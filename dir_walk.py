@@ -6,20 +6,19 @@ import re
 def dir_walk(**kwargs):
 
     top_dir      = kwargs.get("root")
-    # ignore       = kwargs.get("ignore")
+    ignore       = kwargs.get("ignore")
     searchable   = kwargs.get("search")
 
     if (not(os.path.isdir(top_dir))):
         top_dir = os.getcwd()
 
-    print(top_dir)
-    # print(ignore)
-    print(searchable) #Could use the endswitch() method, but I wanted tp practice regular expressions
     file_list = []
     for root, dirs, files in os.walk(top_dir, topdown=True):
-        dirs[:] = [d for d in dirs if not d.startswith('.')]
+        print(dirs)
+        # could have used dirs[:] = [d for d in dirs if not d.startswith('.')] instead of a regular expression      
+        dirs[:] = [d for d in dirs if not ignore.search(d)]
         for file in files:
-            if (searchable.search(file)):
+            if (searchable.search(file)): #Could use the endswith() method, but I wanted tp practice regular expressions
                 #append the file name to the list
                 file_list.append(os.path.join(root,file))
     return(file_list)
