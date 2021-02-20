@@ -3,45 +3,29 @@
 import os
 import re
 
-def dir_walk(dir):
-    cwd = os.getcwd()
+def dir_walk(**kwargs):
 
-    #we will store all the file names in this list
+    top_dir      = kwargs.get("root")
+    # ignore       = kwargs.get("ignore")
+    searchable   = kwargs.get("search")
+
+    if (not(os.path.isdir(top_dir))):
+        top_dir = os.getcwd()
+
+    print(top_dir)
+    # print(ignore)
+    print(searchable) #Could use the endswitch() method, but I wanted tp practice regular expressions
     file_list = []
-
-    for root, dirs, files in os.walk(cwd):
+    for root, dirs, files in os.walk(top_dir, topdown=True):
+        dirs[:] = [d for d in dirs if not d.startswith('.')]
         for file in files:
-            #append the file name to the list
-            file_list.append(os.path.join(root,file))
+            if (searchable.search(file)):
+                #append the file name to the list
+                file_list.append(os.path.join(root,file))
     return(file_list)
-#print all the file names
-
-def test_unpacking(**kwargs):
-    #kwargs is a dict
-
-    ignore   = kwargs.get("ignore")
-    search   = kwargs.get("search")
-
-    print(ignore)
-    ignotus = ignore.search('Volumes/Hulme_Local_Extended/src/Python/DirScan/.git/packed-refs')
-    if ignotus:
-        print('match found: ',ignotus.group())
-    else:
-        print('match not found')
-
     
-    
-# for name in dir_walk("/Volumes/Hulme_Local_Extended/src/Python/DirScan/test_data"):
-#     print(name)
+
 hidden_files     = re.compile(r'/\.\w+')
 searchable_files = re.compile(r'\.txt$')
-test_unpacking(ignore=hidden_files,search=searchable_files)
-# x = re.compile(hidden_files)
-# m = x.search('/Volumes/Hulme_Local_Extended/src/Python/DirScan/.git/packed-refs')
-# if m:
-#         print('match found: ',m.group())
-# else:
-#         print('match not found')
-
-
-# 
+top_dir          = '/Volumes/Hulme_Local_Extended/src/Python/DirScan/test_data'
+print(dir_walk(root=top_dir, ignore=hidden_files, search=searchable_files))
