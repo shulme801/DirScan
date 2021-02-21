@@ -38,4 +38,26 @@ def dir_walk(**kwargs):
                 file_list.append(os.path.join(root,file))
 
     return(file_list)
+
+def count_occurrences(word,in_file):
+    
+    occurrence_count = 0
+
+    try:
+        file_name = open(in_file,"r") 
+    except EOFError as ex:
+        print("Caught the EOF error when opening file {0}".format(str(in_file)))
+        raise ex
+    except IOError as eio:
+        print("Caught the IOError when opening file {0}".format(str(in_file)))
+        raise eio
+    else:
+        for line in file_name:
+            if re.search(word, line):
+                word_list = re.findall(word, line)
+                occurrence_count += len(word_list)
+        file_name.close()
+    return(occurrence_count)
+
+
     
