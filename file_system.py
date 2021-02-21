@@ -59,5 +59,20 @@ def count_occurrences(word,in_file):
         file_name.close()
     return(occurrence_count)
 
+def count_all_occurrences(word_list, file_list):
+
+    words_and_counts = {}
+    
+    for word in word_list:
+        count = 0
+        for file in file_list:
+            count += count_occurrences(word,file)
+        words_and_counts[word] = count
+
+    return(words_and_counts)
+
+
+        
+
 
     
