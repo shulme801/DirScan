@@ -4,6 +4,9 @@ import sys
 import re
 from file_system import dir_walk, count_occurrences, count_all_occurrences
 
+'''
+Driver module -- add sys.argv[] capability for command line execution
+'''
 top_dir = ""
 hidden_dirs = ""
 searchable_files = ""
