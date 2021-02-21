@@ -15,5 +15,5 @@ searchable_files = re.compile(r'\.txt$')
 top_dir          = '/Volumes/Hulme_Local_Extended/src/Python/DirScan/test_data'
 print('------------------------------') # Strictly for show
 file_list = dir_walk(root=top_dir, ignore=hidden_dirs, search=searchable_files)
-word_list = ["there", "Michael", "running", "man"]
+word_list = ["there", "Michael", "running", "man", "computer"]
 print("Final word counts are {0}".format(count_all_occurrences(word_list, file_list)))
