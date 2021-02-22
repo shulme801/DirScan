@@ -5,14 +5,24 @@ import os
 import re
 
 def dir_walk(**kwargs):
-    '''
-    DOCSTRING: This function is invoked with 0-3 arguments, as passed in via the dictionary "kwargs".  It unpacks the kwargs dict.  It then performs a top-down, recursive search of a directory tree (rooted at the "root" argumemt).
-    It bulds a list (called "file_list") of all the files found in the directory tree that match the "include_file" argument.  It ignores directories that match the "ignore" argument.
-    The function returns the file_list. 
+    """Returns a list of files in a dir tree whose name matches a reg ex
+    
+    This function is invoked with 0-3 arguments, as passed in via the 
+    dictionary "kwargs".  It unpacks the kwargs dict.  It then performs 
+    a top-down, recursive search of a directory tree (rooted at the 
+    "root" argumemt).
 
-    If the "root" argument is omitted, the function uses the current working directory as the root.  If the "ignore"  argument is omitted, the function searches all 
-    directories in the tree.  If the "include_files" argument is omitted, all files in the tree are returned.
-    '''
+    It bulds a list (called "file_list") of all the files found in 
+    he directory tree that match the "include_file" argument.  
+    It ignores directories that match the "ignore" argument.
+    The function returns this file_list. 
+
+    If the "root" argument is omitted, the function uses the current 
+    working directory as the root.  
+    If the "ignore"  argument is omitted, the function searches all 
+    directories in the tree.  If the "include_files" argument is 
+    omitted, all files in the tree are returned.
+    """
 
     top_dir        = kwargs.get("root")
     ignore         = kwargs.get("ignore")
@@ -40,6 +50,7 @@ def dir_walk(**kwargs):
     return(file_list)
 
 def count_occurrences(word,in_file):
+    """Returns number of times 'word' appears in 'in_file'"""
     
     occurrence_count = 0
 
@@ -60,6 +71,12 @@ def count_occurrences(word,in_file):
     return(occurrence_count)
 
 def count_all_occurrences(word_list, file_list):
+    """Returns # of times the words in word_list occur in files of file_list
+
+       Returns a dict whose keys are the words in the word_list argument, 
+       and whose values are the count of the times the word appeared in 
+       the files in the file_list argument """
+
 
     words_and_counts = {}
     
