@@ -63,10 +63,9 @@ def count_occurrences(word,in_file):
         print("Caught the IOError when opening file {0}".format(str(in_file)))
         raise eio
     else:
-        for line in file_name:
-            if re.search(word, line):
-                word_list = re.findall(word, line)
-                occurrence_count += len(word_list)
+        target_text = file_name.read()
+        word_list = re.findall(word, target_text)
+        occurrence_count += len(word_list)
         file_name.close()
     return(occurrence_count)
 
