@@ -15,4 +15,4 @@ This driver program allows the user to search for a list of words in all text fi
 * The root of the directory tree
 * List of words to search for in the text files in that directory tree
 
-search_text_files.py prints, for each word specified on the command line, the number of time it was found in the text files in the directory tree.
+**search_text_files.py** prints, for each word specified on the command line, the number of time it was found in the text files in the directory tree.
