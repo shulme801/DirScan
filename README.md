@@ -1,6 +1,6 @@
 # DirScan Project
 
-This project extends the final assignment of the excellent Udemy course "The Complete Python Developer Certification Course".
+This project extends the final assignment of the excellent Udemy course "The Complete Python Developer Certification Course", by Imtiaz Ahmad.
 
 It allows the user to search for a list of words in all text files contained in a directory tree.  The driver program, "search_text_files.py" is invoked from the command line.  It takes command line arguments for
 
