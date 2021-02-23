@@ -38,14 +38,37 @@ The project also:
 
 ## Test Data
 
-The course provides a set of text files, containing several of the works of Shakespeare.  These are unformatted ascii text files.
+The Lexham English Bible(LEB) is freely available from Logos Bible Software for download and non-commercial use.  I downloaded several books to use as test data.  The license information for the LEB is below.
 
 ## Acknowledgement
 
 The Udemy course "The Complete Python Developer Certification Course", was produced and recorded by Imtiaz Ahmad.  The presentation and content of the course are quite good.  While my approach to this project differs from that in the course, please note that this course provided me with the tools and test data to create my own solution.
 
+## License Information
+
+The software and sample data in this repository is licensed under GNU General Public License v3.0. See license.md in this repository. No closed-source or commercial use is allowed.
+
+The sample data are taken from the Lexham English Bible. This text is copyrighted by Logos Bible Software, 1313 Commercial St. Bellingham, WA 98225.  Their license statement reads:
+
+Copyright 2010, 2012 Logos Bible Software
+Logos Bible Software, 1313 Commercial St., Bellingham, WA 98225
+<http://www.logos.com>
+
+----------------------------------------------------------------------------------------------
+
 ## License
 
-The software and data in this repository is licensed under GNU General Public License v3.0.
+----------------------------------------------------------------------------------------------
 
-See license.md in this repository.
+You can give away the Lexham English Bible, but you can't sell it on its own. If the LEB comprises less than 25% of the content of a larger work, you can sell it as part of that work.
+
+If you give away the LEB for use with a commercial product, or sell a work containing more than 1,000 verses from the LEB, you must annually report the number of units sold, distributed, and/or downloaded.
+
+You must always attribute quotations of the LEB.
+
+If you quote less than 100 verses of the LEB in a single work you can attribute it by simply adding (LEB) after the quotation. Longer quotations, or use of 100 or more verses in a single work, must be accompanied by the following statement:
+Scripture quotations marked (LEB) are from the Lexham English Bible. Copyright 2012 Logos Bible Software. Lexham is a registered trademark of Logos Bible Software.
+
+In electronic use, link "LEB" and "Lexham English Bible" to <http://lexhamenglishbible.com>, and "Logos Bible Software" to <http://logos.com>. If all quotations are unmarked and from the LEB, you may remove "marked (LEB) are" from the statement.
+
+In support of non-English Bible translation, non-profit organizations may use 50% as the maximum portion the LEB may comprise of a work offered for sale. (This specifically allows the creation and commercial sale of diglot Bibles.)
