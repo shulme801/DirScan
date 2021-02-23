@@ -3,7 +3,9 @@
 import sys
 import re
 import os
-from count_words_in_files import dir_walk, count_occurrences, count_all_occurrences
+from collections import defaultdict
+
+from count_words_in_files import dir_walk, count_all_occurrences
 
 """Counts # of times words appear in the text files in a dir tree
 
@@ -16,11 +18,12 @@ extension is ".txt".
 """
 
 
-top_dir = ""
-hidden_dirs = ""
+top_dir          = ""
+hidden_dirs      = ""
 searchable_files = ""
 hidden_dirs      = re.compile(r'\.\w*')
 searchable_files = re.compile(r'\.txt$')
+output_totals    = defaultdict(list)
 
 n = len(sys.argv)
 if (n <= 3):
@@ -33,4 +36,10 @@ else:
         word_list = sys.argv[2:]
         print('------------------------------') # Strictly for show
         file_list = dir_walk(root=top_dir, ignore=hidden_dirs, search=searchable_files)
-        print("Final word counts are {0}".format(count_all_occurrences(word_list, file_list)))
+        output_totals = count_all_occurrences(word_list, file_list)
+
+        print("Final Word Counts are:")
+        for k in output_totals:
+            print(k,sep=" ",end=" ")
+            print(output_totals.get(k))
+            
