@@ -3,6 +3,7 @@
 
 import os
 import re
+from collections import defaultdict
 
 def dir_walk(**kwargs):
     """Returns a list of files in a dir tree whose name matches a reg ex
@@ -49,26 +50,6 @@ def dir_walk(**kwargs):
 
     return(file_list)
 
-def count_occurrences(word,in_file):
-    """Returns number of times 'word' appears in 'in_file'"""
-    
-    occurrence_count = 0
-
-    try:
-        file_name = open(in_file,"r") 
-    except EOFError as ex:
-        print("Caught the EOF error when opening file {0}".format(str(in_file)))
-        raise ex
-    except IOError as eio:
-        print("Caught the IOError when opening file {0}".format(str(in_file)))
-        raise eio
-    else:
-        target_text = file_name.read()
-        word_list = re.findall(word, target_text)
-        occurrence_count += len(word_list)
-        file_name.close()
-    return(occurrence_count)
-
 def count_all_occurrences(word_list, file_list):
     """Returns # of times the words in word_list occur in files of file_list
 
@@ -77,15 +58,49 @@ def count_all_occurrences(word_list, file_list):
        the files in the file_list argument """
 
 
-    words_and_counts = {}
+    totals_by_word = []
+    #initialize a tuple of (word,0) for each word, and store it in the list 'totals_by_word'
+    for word in word_list: 
+        temp = (word,0)
+        totals_by_word.append(temp)
     
-    for word in word_list:
-        count = 0
-        for file in file_list:
-            count += count_occurrences(word,file)
-        words_and_counts[word] = count
+    running_totals = defaultdict(list)
+    final_totals   = defaultdict(list)
+    word_total     = 0
 
-    return(words_and_counts)
+    #now, create a dictionary-like object. For each word, you'll have a list that contains the number of 
+    #occurrences of that word, found in each file.
+    for k,v in totals_by_word:
+        running_totals[k].append(v)
+
+    
+    # The following code counts the occurences of every word in every file,
+    # one file at a time, and stores that occurrence count in running_totals[word].
+
+    for file in file_list:
+        try:
+            file_name = open(file,"r") 
+        except EOFError as ex:
+            print("Caught the EOF error when opening file {0}".format(str(file)))
+            raise ex
+        except IOError as eio:
+            print("Caught the IOError when opening file {0}".format(str(file)))
+            raise eio
+        except:
+            print("Caught an unknown error!")
+        else:
+            target_text = file_name.read()
+            for word in word_list:
+                word_occurrences = re.findall(word, target_text)
+                running_totals[word].append(len(word_occurrences))
+            file_name.close()
+
+    for word in word_list:
+        word_total    = sum(running_totals[word])
+        final_totals[word].append(word_total)
+
+    return(final_totals)
+
 
 
         
